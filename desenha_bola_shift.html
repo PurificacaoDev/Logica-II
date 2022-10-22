@@ -13,10 +13,20 @@
   
     	var x = evento.pageX - tela.offsetLeft;
     	var y = evento.pageY - tela.offsetTop;
-    	//alert('Clique foi no eixo X: ' + x +' e o eixo Y: '+ y);
+        var shift = evento.shiftKey;
     	pincel.fillStyle = cor[corAtual];      	
     	pincel.beginPath();
-    	pincel.arc(x,y,10,0,2*3.14);
+
+        if(shift){
+
+            pincel.arc(x,y,20,0,2*3.14);
+
+        }else{
+
+            pincel.arc(x,y,10,0,2*3.14);
+        }
+    	
+
     	pincel.fill();
     	console.log(evento);
 

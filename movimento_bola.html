@@ -1,0 +1,76 @@
+<canvas width="600"  height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+    var cor = ['blue','red','green','purple'];
+    var corAtual = 0;
+    var raio = 10;
+
+    function desenhaBola(evento) {
+
+
+        if(desenha){
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            var shift = evento.shiftKey;
+            var alt = evento.altKey;
+            pincel.fillStyle = cor[corAtual];       
+            pincel.beginPath();
+
+            if(shift){
+
+                raio = raio +10;
+
+            }
+
+            if(alt){
+
+                raio = raio -5;
+            }
+
+            if(raio <= 5){
+
+                    raio = 5;
+            }
+
+            pincel.arc(x,y,raio,0,2*3.14);
+            pincel.fill();
+            console.log(evento);
+
+        }
+    }
+
+    function mudaCor(){
+
+    	if(corAtual < 4){
+    		
+    		corAtual++;
+
+    	}else{
+    		corAtual = 0;
+    	}
+    	return false;
+    }
+
+    tela.onmousemove = desenhaBola;
+    tela.oncontextmenu = mudaCor;
+
+    tela.onmousedown = function (){
+
+        desenha = true;
+    }
+
+    tela.onmouseup = function (){
+
+        desenha = false;
+    }
+
+    
+
+
+
+</script>
