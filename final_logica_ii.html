@@ -33,7 +33,7 @@
         var x = evento.pageX - tela.offsetLeft;
         var y = evento.pageY - tela.offsetTop;
 
-        if(desenha) {
+        if(desenha && zonaProibida(x,y) ) {
 
             desenhaCirculo(x, y, 5, cor[corAtual]);
         }
@@ -69,6 +69,26 @@
         }
 
         return false;
+    }
+
+    function zonaProibida(x,y){
+    
+        if(x >= 0 && x <= 49 && y >= 0 && y <= 49){
+
+            return false;
+
+        }else if(x >= 50 && x <= 99 && y >= 0 && y <= 99){
+
+            return false;
+
+        }else if(x >= 100 && x <= 150 && y >= 0 && y <= 150){
+
+            return false;
+        }else{
+
+            return true;
+        }
+
     }
 
     var tela = document.querySelector('canvas');
